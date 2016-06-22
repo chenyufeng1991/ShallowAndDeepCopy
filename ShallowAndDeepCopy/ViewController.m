@@ -73,9 +73,35 @@
     NSLog(@"person = %d;mutableCopyPerson = %d",person,mutableCopyPerson);
 #endif
 
-    
+#if 1
+    // 这里打印出的是"Jack",而不是"Jack and Mary".说明这里的person.name是重新创建了新的字符串
+    // 注意这里的person.name的属性是copy，而不是strong。因为这里的otherName是可变的，所以创建新的字符串
+
+    // 如果person.name设置为strong，那么就是浅拷贝
+    NSMutableString *otherName = [[NSMutableString alloc] initWithString:@"Jack"];
+    Person *person = [[Person alloc] init];
+    person.name = otherName;
+    person.age = 23;
+
+    [otherName appendString:@" and Mary"];
+    NSLog(@"person.name = %@",person.name);
+#endif
+
+
+
+
+
+
+
 
 
 }
 
 @end
+
+
+
+
+
+
+
