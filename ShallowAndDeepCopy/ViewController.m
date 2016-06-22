@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Person.h"
 
 @interface ViewController ()
 
@@ -59,6 +60,20 @@
     NSLog(@"string1 = %d;string4 = %d",string1,string4);
     NSLog(@"string1 = %d;string5 = %d",string1,string5);
 #endif
+
+#if 0
+    // Person类必须实现copyWithZone和mutableCopyWithZone方法。
+    Person *person = [[Person alloc] init];
+    person.name = @"Jack";
+    person.age = 23;
+
+    Person *copyPerson = [person copy]; // 深拷贝
+    Person *mutableCopyPerson = [person mutableCopy]; // 深拷贝
+    NSLog(@"person = %d;copyPerson = %d",person,copyPerson);
+    NSLog(@"person = %d;mutableCopyPerson = %d",person,mutableCopyPerson);
+#endif
+
+    
 
 
 }
