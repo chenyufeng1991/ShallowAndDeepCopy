@@ -95,6 +95,7 @@
 
     // 如果person.name设置为strong，那么就是浅拷贝。
     // 为什么使用strong就是浅拷贝呢？因为strong会持有原来的对象，使原来的对象的引用计数+1，其实就是指针拷贝。
+    // 这里用copy还是strong取决于需求，如果不希望被外界更改，那么使用copy，否则用strong。
     NSMutableString *otherName = [[NSMutableString alloc] initWithString:@"Jack"];
     Person *person = [[Person alloc] init];
     person.name = otherName;
@@ -121,6 +122,7 @@
 #endif
 
 
+#if 0
     // copyArray01和array01指向的是同一个对象，包括里面的元素也是指向相同的指针。
     // mutableCopyArray01和array01指向的是不同的对象，但是里面的元素指向的都是相同的对象。mutableCopyArray01可以修改自己的对象。
     // copyArray01是对array01的指针复制，而mutableCopyArray01是内容复制。mutableCopyArray01可以改变自己的对象。
@@ -135,6 +137,7 @@
     NSLog(@"array01[0] = %d,array01[1] = %d,array01[2] = %d",array01[0],array01[1],array01[2]);
     NSLog(@"copyArray01[0] = %d,copyArray01[1] = %d,copyArray01[2] = %d",copyArray01[0],copyArray01[1],copyArray01[2]);
     NSLog(@"mutableCopyArray01[0] = %d,mutableCopyArray01[1] = %d,mutableCopyArray01[2] = %d",mutableCopyArray01[0],mutableCopyArray01[1],mutableCopyArray01[2]);
+#endif
 
 
 
