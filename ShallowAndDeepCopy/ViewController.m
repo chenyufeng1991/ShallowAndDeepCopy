@@ -25,6 +25,9 @@
       id temp = [array objectAtIndex:0];
       [array removeObjectAtIndex:0];
       如果这个时候还要用temp,就会报错。因为temp已经被释放了。
+ 
+    (5)对于系统的非容器类对象，对于不可变对象的复制，copy是指针复制（浅拷贝）和mutableCopy就是内容复制（深拷贝）。
+      如果是对可变对象复制，都是深拷贝，但是copy返回的对象是不可变的。
  */
 @implementation ViewController
 
@@ -60,7 +63,7 @@
     NSLog(@"string1 = %d;string5 = %d",string1,string5);
 #endif
 
-#if 1
+#if 0
     // 如果是一个MutableString，那么无论是copy，mutableCopy，都会创建一个新对象。
     NSMutableString *string1 = [NSMutableString stringWithString:@"helloworld"];
     NSString *string2 = [string1 copy]; // 深拷贝
@@ -102,6 +105,20 @@
 #endif
 
 
+#if 0
+    NSMutableString *string1 = [NSMutableString stringWithString:@"helloworld"];
+    NSString *string2 = [string1 copy]; // 深拷贝
+    NSString *string3 = [string1 mutableCopy]; // 深拷贝
+    NSMutableString *string4 = [string1 copy]; // 深拷贝
+    NSMutableString *string5 = [string1 mutableCopy]; // 深拷贝
+
+    NSLog(@"string1 = %d;string2 = %d",string1,string2);
+    NSLog(@"string1 = %d;string3 = %d",string1,string3);
+    NSLog(@"string1 = %d;string4 = %d",string1,string4);
+    NSLog(@"string1 = %d;string5 = %d",string1,string5);
+
+    [string4 appendString:@" HI"]; // 这里会报错，因为string4其实返回的是不可变对象。
+#endif
 
 
 
