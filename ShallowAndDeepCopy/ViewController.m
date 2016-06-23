@@ -121,6 +121,20 @@
 #endif
 
 
+    // copyArray01和array01指向的是同一个对象，包括里面的元素也是指向相同的指针。
+    // mutableCopyArray01和array01指向的是不同的对象，但是里面的元素指向的都是相同的对象。mutableCopyArray01可以修改自己的对象。
+    // copyArray01是对array01的指针复制，而mutableCopyArray01是内容复制。mutableCopyArray01可以改变自己的对象。
+    // 综上所述，对于容器而已，元素对象始终是指针复制。
+    NSArray *array01 = [NSArray arrayWithObjects:@"a",@"b",@"c", nil];
+    NSArray *copyArray01 = [array01 copy];
+    NSMutableArray *mutableCopyArray01 = [array01 mutableCopy];
+    NSLog(@"array01 = %d,copyArray01 = %d",array01,copyArray01);
+    NSLog(@"array01 = %d,mutableCopyArray01 = %d",array01,mutableCopyArray01);
+
+
+    NSLog(@"array01[0] = %d,array01[1] = %d,array01[2] = %d",array01[0],array01[1],array01[2]);
+    NSLog(@"copyArray01[0] = %d,copyArray01[1] = %d,copyArray01[2] = %d",copyArray01[0],copyArray01[1],copyArray01[2]);
+    NSLog(@"mutableCopyArray01[0] = %d,mutableCopyArray01[1] = %d,mutableCopyArray01[2] = %d",mutableCopyArray01[0],mutableCopyArray01[1],mutableCopyArray01[2]);
 
 
 
